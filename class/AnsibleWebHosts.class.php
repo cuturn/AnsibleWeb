@@ -1,4 +1,6 @@
 <?php
+require_once(dirname(__FILE__) . "/AnsibleHost.class.php");
+
 class AnsibleWebHosts {
     private $hostsfile = "/etc/ansible/hosts";
     private $hosts = array();
@@ -32,18 +34,18 @@ class AnsibleWebHosts {
     private function addHost($host,$group){
         $exist = false;
         for($i=0;$i<count($this->hosts);$i++){
-            if($this->hosts[$i]["hostname"]===$host["hostname"]){
+            if($this->hosts[$i]->hostname===$host->hostname){
                 $exist = true;
-                if(array_search($group,$this->hosts[$i]["groups"])===false){
-                    $this->hosts[$i]["groups"][] = $group;
+                if(array_search($group,$this->hosts[$i]->groups)===false){
+                    $this->hosts[$i]->groups[] = $group;
                 }
             }
         }
         if(!$exist){
             if($group === 'all'){
-                $host["groups"]=array( 0 => 'all');
+                $host->groups=array( 0 => 'all');
             }else{
-                $host["groups"]=array( 0 => 'all' , 1 => $group );
+                $host->groups=array( 0 => 'all' , 1 => $group );
             }
             $this->hosts[] = $host;
         }
@@ -51,10 +53,8 @@ class AnsibleWebHosts {
     
     private function readLine($line){
         $splitarray = split(" ",$line);
-        $retarray = array();
-        $retarray["hostname"] = array_shift($splitarray);
-        $retarray["ipaddress"] = gethostbyname($retarray["hostname"]);
-        return $retarray;
+        $host = new AnsibleHost(array_shift($splitarray));
+        return $host;
         //今はhostだけ
     }
 }

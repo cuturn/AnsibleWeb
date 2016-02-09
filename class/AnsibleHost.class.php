@@ -1,5 +1,6 @@
 <?php
 class AnsibleHost {
+    public $id = 0;
     public $hostname = "";
     public $ipaddress = "";
     public $groups = array();
@@ -8,8 +9,8 @@ class AnsibleHost {
     
     public function __construct($hostname,$ipaddress=null,$groups=null,$vars=null){
         $this->hostname = $hostname;
-        if($ipaddress===null){
-            $this->ipaddress = gethostbyname($ipaddress);
+        if($ipaddress==null){
+            $this->ipaddress = gethostbyname($hostname);
         }else{
             $this->ipaddress = $ipaddress;
         }
@@ -35,8 +36,8 @@ class AnsibleHost {
     }
     
     public function setFact($factpath){
-        $handle = fopen($files[$i], 'r');
-        $this->fact = json_decode(fread($handle, filesize($files[$i])),true);
+        $handle = fopen($factpath."/".$this->hostname, 'r');
+        $this->fact = json_decode(fread($handle, filesize($factpath."/".$this->hostname)),true);
         fclose($handle);
     }
 }

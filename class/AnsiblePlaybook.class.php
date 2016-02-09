@@ -1,5 +1,5 @@
 <?php
-include(dirname(__FILE__) . "/../include/Spyc.php");
+require_once(dirname(__FILE__) . "/../include/Spyc.php");
 
 class AnsiblePlaybook {
     public $playbookname = "";
@@ -25,7 +25,7 @@ class AnsiblePlaybook {
             }else{
                 $this->roles = array();
             }
-            if(isset($yaml[0]["tasks"]) && is_array($yaml[0]["tasks"]){
+            if(isset($yaml[0]["tasks"]) && is_array($yaml[0]["tasks"])){
                 $this->tasknum = count($yaml[0]["tasks"]);
             }
         }

@@ -1,4 +1,7 @@
 <?php
+require_once(dirname(__FILE__) . "/AnsibleHost.class.php");
+require_once(dirname(__FILE__) . "/AnsiblePlaybook.class.php");
+
 class AnsibleWebDB
 {
     public $pdo ;

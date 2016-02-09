@@ -32,6 +32,7 @@
             <li <?php if($page_id==4)echo 'class="active"'; ?>><a href="facts.php">Facts</a></li>
             <li <?php if($page_id==5)echo 'class="active"'; ?>><a href="hosts_db.php">Hosts_DB</a></li>
             <li <?php if($page_id==2)echo 'class="active"'; ?>><a href="playbooks.php">Playbooks</a></li>
+            <li <?php if($page_id==6)echo 'class="active"'; ?>><a href="playbooks_db.php">Playbooks_DB</a></li>
             <li <?php if($page_id==3)echo 'class="active"'; ?>><a href="roles.php">Roles</a></li>
         </ul>
     </div><!--/.nav-collapse -->
