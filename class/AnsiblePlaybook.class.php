@@ -2,6 +2,7 @@
 require_once(dirname(__FILE__) . "/../include/Spyc.php");
 
 class AnsiblePlaybook {
+    public $id = 0;
     public $playbookname = "";
     public $path = "";
     public $hosts = "";

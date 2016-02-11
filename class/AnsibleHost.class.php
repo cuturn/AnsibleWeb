@@ -7,23 +7,8 @@ class AnsibleHost {
     public $vars = array();
     public $fact = null;
     
-    public function __construct($hostname,$ipaddress=null,$groups=null,$vars=null){
-        $this->hostname = $hostname;
-        if($ipaddress==null){
-            $this->ipaddress = gethostbyname($hostname);
-        }else{
-            $this->ipaddress = $ipaddress;
-        }
-        if($groups===null){
-            $this->groups = array();
-        }else{
-            $this->groups = $groups;
-        }
-        if($vars===null){
-            $this->vars = array();
-        }else{
-            $this->vars = $vars;
-        }
+    public function __construct(){
+        
     }
     
     public function toString(){
@@ -39,6 +24,11 @@ class AnsibleHost {
         $handle = fopen($factpath."/".$this->hostname, 'r');
         $this->fact = json_decode(fread($handle, filesize($factpath."/".$this->hostname)),true);
         fclose($handle);
+    }
+    
+    public function resolveIP(){
+        $this->ipaddress = gethostbyname($hostname);
+        return $this->ipaddress;
     }
 }
 ?>

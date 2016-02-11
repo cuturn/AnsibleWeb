@@ -21,9 +21,9 @@ $playbooks = $db->getPlaybooks();
             <td>
                 <?php foreach(getPlaybook($playbooks[$i]["path"])[0]["roles"] as $role): ?>
                 <?php if(is_array($role)):?>
-                <span class="label label-default" onclick="searchTable('<?php echo basename($role["role"]);?>')" title="<?php echo realpath(dirname($playbooks[$i])."/".$role["role"]);?>"><?php echo basename($role["role"]);?></span>
+                <span class="label label-default" onclick="searchTable('<?php echo basename($role["role"]);?>')" title="<?php echo realpath(dirname($playbooks[$i]["path"])."/".$role["role"]);?>"><?php echo basename($role["role"]);?></span>
                 <?php else: ?>
-                <span class="label label-default" onclick="searchTable('<?php echo basename($role);?>')" title="<?php echo realpath(dirname($playbooks[$i])."/".$role);?>"><?php echo basename($role);?></span>
+                <span class="label label-default" onclick="searchTable('<?php echo basename($role);?>')" title="<?php echo realpath(dirname($playbooks[$i]["path"])."/".$role);?>"><?php echo basename($role);?></span>
                 <?php endif;?>
                 <?php endforeach;?>
             </td>

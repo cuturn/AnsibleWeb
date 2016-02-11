@@ -53,7 +53,9 @@ class AnsibleWebHosts {
     
     private function readLine($line){
         $splitarray = split(" ",$line);
-        $host = new AnsibleHost(array_shift($splitarray));
+        $host = new AnsibleHost();
+        $host->hostname = array_shift($splitarray);
+        $host->resolveIP();
         return $host;
         //今はhostだけ
     }
